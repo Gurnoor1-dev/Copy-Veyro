@@ -1,0 +1,6 @@
+{
+  "name": "VEYRO",
+  "description": "Infinite Flight pilot stats lookup, grade matrix, flight log, ATC session analytics, and radar planner.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

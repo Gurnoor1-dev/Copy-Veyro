@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark,
+  html.dark body {
+    background-color: #0b0f19;
+    color: #f1f5f9;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* Aviation MSA Hover Tooltip (Matching reference screenshot) */
+  .leaflet-tooltip.msa-elevation-tooltip {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    padding: 5px 9px !important;
+    border-radius: 6px !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    white-space: nowrap !important;
+  }
+
+  .leaflet-tooltip.msa-elevation-tooltip::before {
+    border-top-color: #ffffff !important;
+  }
+
+  /* Minimalist Radar / Nav Tooltip (Only shows name when hovered on) */
+  .leaflet-tooltip.radar-tooltip {
+    background-color: #0b0f19 !important;
+    color: #f8fafc !important;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    padding: 3px 6px !important;
+    border-radius: 4px !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45) !important;
+    white-space: nowrap !important;
+  }
+
+  .leaflet-tooltip.radar-tooltip::before {
+    border-top-color: #0b0f19 !important;
+  }
+
+  /* Remove Leaflet default divIcon square box (white background & gray border) */
+  .leaflet-div-icon {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .hold-center-alt-badge,
+  .measure-dist-horizontal-badge,
+  .nav-airport-marker,
+  .airport-pin-div-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .whiteboard-fix-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: crosshair;
+  }
+
+  /* Animated marching-ants dash effect for vector line drag preview */
+  .whiteboard-drag-preview-line {
+    animation: drag-preview-dash 1.2s linear infinite;
+    stroke-linecap: round;
+  }
+  @keyframes drag-preview-dash {
+    from {
+      stroke-dashoffset: 28;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* When exporting clean PNG of radar scope, hide all UI controls, hold dimension handles, and tooltips */
+  .exporting-png .hold-end-handle,
+  .exporting-png .hold-side-handle,
+  .exporting-png .hold-anchor-marker,
+  .exporting-png .hold-tooltip-pill,
+  .exporting-png .ui-control-handle,
+  .exporting-png .leaflet-control-container,
+  .exporting-png .leaflet-control,
+  .exporting-png .leaflet-control-attribution,
+  .exporting-png .leaflet-control-zoom,
+  .exporting-png .leaflet-popup-pane,
+  .exporting-png .leaflet-tooltip-pane,
+  .exporting-png .leaflet-popup,
+  .exporting-png .leaflet-tooltip,
+  .exporting-png .measure-dist-horizontal-badge,
+  .exporting-png .whiteboard-live-drag-badge,
+  .exporting-png .area-in-progress-marker,
+  .exporting-png .no-export,
+  .exporting-png [data-no-export] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Live Airborne Traffic Radar Tooltip */
+  .leaflet-tooltip.radar-traffic-tooltip {
+    background-color: rgba(2, 6, 23, 0.94) !important;
+    border: 1px solid rgba(56, 189, 248, 0.45) !important;
+    color: #f8fafc !important;
+    border-radius: 6px !important;
+    padding: 6px 9px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    pointer-events: none !important;
+  }
+  .leaflet-tooltip.radar-traffic-tooltip::before {
+    border-top-color: rgba(56, 189, 248, 0.45) !important;
+    border-bottom-color: rgba(56, 189, 248, 0.45) !important;
+  }
+
+  /* Approach Cone Glideslope Tooltip */
+  .leaflet-tooltip.radar-cone-tooltip {
+    background-color: rgba(2, 6, 23, 0.94) !important;
+    border: 1px solid rgba(239, 68, 68, 0.5) !important;
+    color: #f8fafc !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(8px) !important;
+    pointer-events: none !important;
+  }
+  .leaflet-tooltip.radar-cone-tooltip::before {
+    border-top-color: rgba(239, 68, 68, 0.5) !important;
+    border-bottom-color: rgba(239, 68, 68, 0.5) !important;
+  }
+
+  /* Glideslope Hoverable Dot Tooltip (Matching image.png) */
+  .leaflet-tooltip.glideslope-dot-tooltip {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid rgba(0, 0, 0, 0.14) !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22) !important;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    pointer-events: none !important;
+  }
+  .leaflet-tooltip.glideslope-dot-tooltip::before {
+    border-right-color: #ffffff !important;
+  }
+}
+
+
